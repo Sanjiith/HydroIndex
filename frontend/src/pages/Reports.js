@@ -23,9 +23,9 @@ export default function Reports() {
       String(r.id ?? ''),
       String(r.location ?? ''),
       String(r.date ?? ''),
-      String(r.HPI),   // internal HPI as HMPI
-      String(r.HEI),   // internal HEI as PLI
-      String(r.Cd)     // internal Cd as CF
+      String(r.HMPI?.toFixed(2) || '0.00'),
+      String(r.PLI?.toFixed(2) || '0.00'),
+      String(r.CF?.toFixed(2) || '0.00')
     ]);
 
     doc.autoTable({
@@ -41,9 +41,9 @@ export default function Reports() {
   function downloadCSV() {
     if (!computed.length) return alert('No data');
     const csvData = computed.map(r => ({
-      HMPI: r.HPI,
-      PLI: r.HEI,
-      CF: r.Cd
+      HMPI: r.HMPI?.toFixed(2) || '0.00',
+      PLI: r.PLI?.toFixed(2) || '0.00',
+      CF: r.CF?.toFixed(2) || '0.00'
     }));
     const csv = Papa.unparse(csvData);
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -79,9 +79,9 @@ export default function Reports() {
                     h('td', null, String(r.id ?? '')),
                     h('td', null, String(r.location ?? '')),
                     h('td', null, String(r.date ?? '')),
-                    h('td', null, String(r.HPI)),  // HMPI
-                    h('td', null, String(r.HEI)),  // PLI
-                    h('td', null, String(r.Cd))    // CF
+                    h('td', null, String(r.HMPI?.toFixed(2) || '0.00')),
+                    h('td', null, String(r.PLI?.toFixed(2) || '0.00')),
+                    h('td', null, String(r.CF?.toFixed(2) || '0.00'))
                   )
                 )
               )

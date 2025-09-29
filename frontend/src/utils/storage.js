@@ -15,8 +15,15 @@ export function saveSamples(samples) {
 
 export function addSample(sample) {
   const all = loadSamples();
-  all.push(sample);
+  const sampleWithDefaults = {
+    id: sample.id || `sample_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+    timestamp: sample.timestamp || new Date().toISOString(),
+    location: sample.location || 'Unknown Location',
+    ...sample
+  };
+  all.push(sampleWithDefaults);
   saveSamples(all);
+  return sampleWithDefaults;
 }
 
 export function removeSample(id) {
@@ -24,7 +31,10 @@ export function removeSample(id) {
   saveSamples(all);
 }
 
-export function updateSample(id, updates) {
-  const all = loadSamples().map(s => s.id === id ? { ...s, ...updates } : s);
-  saveSamples(all);
+export function getSampleById(id) {
+  return loadSamples().find(s => s.id === id);
+}
+
+export function clearAllSamples() {
+  localStorage.removeItem(KEY);
 }

@@ -1,0 +1,266 @@
+/* App.css */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Layout Styles */
+.app-layout {
+  min-height: 100vh;
+  background-color: #0f172a;
+}
+
+.app-container {
+  min-height: calc(100vh - 56px);
+}
+
+.app-main {
+  background-color: #0f172a;
+  min-height: calc(100vh - 56px);
+  transition: margin-left 0.3s ease;
+  width: 100%;
+}
+
+/* Sidebar Responsive Styles */
+.app-sidebar {
+  background: #1a1d23;
+  color: white;
+  height: 100%;
+  transition: all 0.3s ease;
+  overflow-x: hidden;
+  z-index: 1040;
+}
+
+.app-sidebar.collapsed {
+  width: 64px !important;
+}
+
+.app-sidebar.mobile-open {
+  left: 0 !important;
+}
+
+/* Mobile First Styles */
+@media (max-width: 991.98px) {
+  .app-sidebar {
+    position: fixed !important;
+    left: -280px;
+    top: 56px;
+    height: calc(100vh - 56px);
+    width: 280px !important;
+    z-index: 1040;
+    transition: left 0.3s ease;
+  }
+
+  .app-sidebar.collapsed {
+    left: 0;
+    width: 280px !important;
+  }
+
+  .app-main {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  .app-sidebar {
+    width: 200px;
+  }
+  
+  .app-sidebar.collapsed {
+    width: 64px;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 992px) {
+  .app-sidebar {
+    width: 250px;
+  }
+  
+  .app-sidebar.collapsed {
+    width: 64px;
+  }
+  
+  .app-main {
+    margin-left: 0;
+    width: calc(100% - 250px);
+  }
+  
+  .app-sidebar.collapsed ~ .app-main {
+    width: calc(100% - 64px);
+    margin-left: 64px;
+  }
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1039;
+  display: none;
+}
+
+.sidebar-overlay.show {
+  display: block;
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+/* Sidebar Links */
+.sidebar-link {
+  color: #b0b7c3;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-link:hover {
+  color: #fff;
+  background-color: rgba(255,255,255,0.1);
+}
+
+.sidebar-link.active {
+  color: #0ea5a8;
+  background-color: rgba(14, 165, 168, 0.1);
+}
+
+/* Navbar Brand */
+.brand-gradient {
+  background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Responsive Table */
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media (max-width: 767.98px) {
+  .table {
+    font-size: 0.875rem;
+  }
+  
+  .btn {
+    font-size: 0.875rem;
+  }
+  
+  .card-body {
+    padding: 1rem !important;
+  }
+}
+
+/* Chart Responsiveness */
+.chart-container {
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+@media (max-width: 767.98px) {
+  .chart-container {
+    height: 300px;
+  }
+}
+
+/* KPI Cards Responsive */
+.kpi-value {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+/* Form Responsiveness */
+.form-control {
+  font-size: 16px; /* Prevents zoom on iOS */
+}
+
+@media (max-width: 575.98px) {
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .btn-group-responsive {
+    flex-direction: column;
+  }
+  
+  .btn-group-responsive .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .app-sidebar,
+  .navbar,
+  .btn {
+    display: none !important;
+  }
+  
+  .app-main {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}

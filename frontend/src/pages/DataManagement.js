@@ -90,19 +90,17 @@ export default function DataManagement() {
         h(Card, { title: `Stored Samples (${rows.length})` },
           h('div', { className: 'd-flex flex-wrap gap-2 mb-3' },
             // Smaller Delete Selected button
-           // Smaller Delete Selected button
-h('button', { className: 'btn btn-danger btn-sm py-0 px-2 d-flex align-items-center', onClick: deleteSelected }, 
-  h('i', { className: 'bi bi-trash me-1' }), 'Delete Selected'
-),
-// Smaller Clear All button
-h('button', { className: 'btn btn-outline-light btn-sm py-0 px-2 d-flex align-items-center', onClick: clearAll }, 
-  h('i', { className: 'bi bi-x-circle me-1' }), 'Clear All'
-),
-
+            h('button', { className: 'btn btn-danger btn-sm py-0 px-2 d-flex align-items-center', onClick: deleteSelected }, 
+              h('i', { className: 'bi bi-trash me-1' }), 'Delete Selected'
+            ),
+            // Smaller Clear All button
+            h('button', { className: 'btn btn-outline-light btn-sm py-0 px-2 d-flex align-items-center', onClick: clearAll }, 
+              h('i', { className: 'bi bi-x-circle me-1' }), 'Clear All'
+            ),
 
             // Date Range Picker Section
             h('div', { className: 'ms-auto d-flex align-items-center gap-2' },
-              h('label', { className: 'form-label mb-0 fw-bold me-2' }, 'Date Range:'), // Changed label text
+              h('label', { className: 'form-label mb-0 fw-bold me-2' }, 'Date Range:'),
               h('div', { className: 'input-group input-group-sm' },
                 h('span', { className: 'input-group-text bg-secondary text-white' }, 'From'),
                 h('input', { type: 'date', className: 'form-control', value: startDate, onChange: (e) => setStartDate(e.target.value) }),
@@ -140,9 +138,9 @@ h('button', { className: 'btn btn-outline-light btn-sm py-0 px-2 d-flex align-it
                     h('td', null, String(r.id)),
                     h('td', null, String(r.location || '')),
                     h('td', null, String(r.date || '')),
-                    h('td', null, String(idx.HPI)),
-                    h('td', null, String(idx.HEI)),
-                    h('td', null, String(idx.Cd)),
+                    h('td', null, String(idx.HMPI?.toFixed(2) || '0.00')),
+                    h('td', null, String(idx.PLI?.toFixed(2) || '0.00')),
+                    h('td', null, String(idx.CF?.toFixed(2) || '0.00')),
                     h('td', null,
                       h('div', { className: 'd-flex gap-2' },
                         h('button', { className: 'btn btn-sm btn-outline-danger', onClick: () => del(r.id) }, 
